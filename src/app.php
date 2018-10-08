@@ -24,6 +24,7 @@ $app->register(new LocaleServiceProvider());
 $app->register(new TranslationServiceProvider(), array(
     'translator.domains' => array(),
 ));
+
 $app->register(new IPInfoServiceProvider(), array(
     'ip.token' => 'bb94b013a4e20e'
 ));

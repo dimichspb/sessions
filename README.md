@@ -27,11 +27,13 @@ composer install
 Development and testing:
 ```
 config\dev.php
+src\console_dev.php
 ```
 
 Production:
 ```
 config\prod.php
+src\console_prod.php
 ```
 
 2. Setup apache configuration
@@ -58,7 +60,7 @@ apachectl restart
 
 Development and testing:
 ```
-php bin\console_test migrate-up
+php bin\console_dev migrate-up
 ```
 
 Production:
