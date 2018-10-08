@@ -1,0 +1,39 @@
+{% extends "/layout.html.twig" %}
+
+{% block title "24Sessions test assignment" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Welcome to 24Sessions test assignment!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.ip) }}
+                {{ form_widget(form.ip) }}
+                {{ form_errors(form.ip) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.location) }}
+                {{ form_widget(form.location) }}
+                {{ form_errors(form.location) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.get_ip) }}
+                {{ form_widget(form.get_ip) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.get_location) }}
+                {{ form_widget(form.get_location) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
