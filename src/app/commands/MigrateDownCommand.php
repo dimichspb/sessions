@@ -6,6 +6,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MigrateDownCommand extends Command
 {
+    /**
+     * Migrate Up command configuration
+     */
     protected function configure()
     {
         $this
@@ -13,6 +16,12 @@ class MigrateDownCommand extends Command
             ->setDescription('Drops table Location.');
     }
 
+    /**
+     * Migrate Up command executive
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return bool|int|null
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $statement =

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Creating symlinks for Bootstrap and JQuery
+ */
+
 $link = dirname(__DIR__) . '/web/bootstrap';
 $target = dirname(__DIR__) . '/vendor/twbs/bootstrap/dist';
 

@@ -4,6 +4,10 @@ namespace app\repositories;
 use app\models\Location;
 use Assert\Assertion;
 
+/**
+ * Class ActiveRecordLocationRepository
+ * @package app\repositories
+ */
 class ActiveRecordLocationRepository implements LocationRepositoryInterface
 {
     /**

@@ -8,9 +8,20 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class SiteController
+ * @package app\controllers
+ */
 class SiteController
 {
+    /**
+     * @var FormFactory
+     */
     protected $formFactory;
+
+    /**
+     * @var \Twig_Environment
+     */
     protected $twig;
 
     public function __construct(\Twig_Environment $twig, FormFactory $formFactory)
@@ -19,6 +30,14 @@ class SiteController
         $this->twig = $twig;
     }
 
+    /**
+     * Homepage
+     * @param Request $request
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function actionIndex(Request $request)
     {
         $data = array(

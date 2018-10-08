@@ -6,6 +6,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MigrateUpCommand extends Command
 {
+    /**
+     * Migrate Down command configuration
+     */
     protected function configure()
     {
         $this
@@ -13,6 +16,12 @@ class MigrateUpCommand extends Command
             ->setDescription('Creates table Location.');
     }
 
+    /**
+     * Migrate Down command executive
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return bool|int|null
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $statement =

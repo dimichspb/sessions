@@ -6,8 +6,15 @@ use app\models\Location;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
 
+/**
+ * Class ActiveRecordLocationRepositoryTest
+ * @package tests\repositories
+ */
 class ActiveRecordLocationRepositoryTest extends TestCase
 {
+    /**
+     * @var Application
+     */
     protected $app;
 
     /**
@@ -15,6 +22,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
      */
     protected $location;
 
+    /**
+     * SetUp tests
+     */
     protected function setUp()
     {
         $this->createApplication();
@@ -26,11 +36,17 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->location->city = 'London';
     }
 
+    /**
+     * Tests Location is being saved successfully
+     */
     public function testSaveSuccess()
     {
         $this->assertTrue($this->location->save());
     }
 
+    /**
+     * Tests that Location duplicate is not allowed
+     */
     public function testSaveDuplicateFailed()
     {
         $this->location->save();
@@ -46,6 +62,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->assertFalse($location->save());
     }
 
+    /**
+     * Tests saving Location with wrong IP address
+     */
     public function testSaveIpFailed()
     {
         $this->location->ip = 'This is not valid IP address';
@@ -53,6 +72,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->location->save();
     }
 
+    /**
+     * Tests saving Location with wrong Country name
+     */
     public function testSaveCountryFailed()
     {
         $this->location->country = 'This is not valid Country name';
@@ -60,6 +82,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->location->save();
     }
 
+    /**
+     * Tests saving Location with wrong City name
+     */
     public function testSaveCityFailed()
     {
         $this->location->city = 'This is not valid City name - very long';
@@ -67,6 +92,7 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->location->save();
     }
     /**
+     * Tests finding by IP is success when Location exists
      * @depends testSaveSuccess
      */
     public function testFindByIpSuccess()
@@ -82,6 +108,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->assertEquals($this->location->city, $location->city);
     }
 
+    /**
+     * Tests finding by IP is failed when Location does not exist
+     */
     public function testFindByIpFailed()
     {
         $location = Location::find_by_ip('111.111.111.111');
@@ -89,6 +118,10 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         $this->assertNull($location);
     }
 
+    /**
+     * Creates Application in dev mode
+     * @return Application
+     */
     public function createApplication()
     {
         /** @var Application $app */
@@ -100,6 +133,9 @@ class ActiveRecordLocationRepositoryTest extends TestCase
         return $this->app = $app;
     }
 
+    /**
+     * Clears Location storage
+     */
     protected function clear()
     {
         $locations = Location::all();

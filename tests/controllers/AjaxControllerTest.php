@@ -7,8 +7,15 @@ use ipinfo\ipinfo\Details;
 use ipinfo\ipinfo\IPinfo;
 use Silex\WebTestCase;
 
+/**
+ * Class AjaxControllerTest
+ * @package tests\controllers
+ */
 class AjaxControllerTest extends WebTestCase
 {
+    /**
+     * Tests ajax/ip POST request
+     */
     public function testPostIp()
     {
         $client = $this->createClient();
@@ -22,6 +29,9 @@ class AjaxControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Tests ajax/location POST request when Location does not exist
+     */
     public function testPostLocationNotExists()
     {
         $client = $this->createClient();
@@ -36,6 +46,9 @@ class AjaxControllerTest extends WebTestCase
 
     }
 
+    /**
+     * Tests ajax/location POST request when Location exists
+     */
     public function testPostLocationExists()
     {
         $client = $this->createClient();
@@ -50,6 +63,10 @@ class AjaxControllerTest extends WebTestCase
 
     }
 
+    /**
+     * Creates Application in dev mode
+     * @return mixed|\Symfony\Component\HttpKernel\HttpKernelInterface
+     */
     public function createApplication()
     {
         $app = require __DIR__ . '/../../src/app.php';
@@ -66,6 +83,10 @@ class AjaxControllerTest extends WebTestCase
         return $this->app = $app;
     }
 
+    /**
+     * Creates IPInfo SDK Mock
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function getIpInfoMock()
     {
         $mock = $this->createMock(IPinfo::class);
@@ -74,6 +95,10 @@ class AjaxControllerTest extends WebTestCase
         return $mock;
     }
 
+    /**
+     * Creates LocationService Mock
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     protected function getLocationServiceMock()
     {
         $mock = $this->createMock(LocationService::class);
@@ -85,6 +110,10 @@ class AjaxControllerTest extends WebTestCase
         return $mock;
     }
 
+    /**
+     * Callback function for LocationService::get() method
+     * @return Location|null
+     */
     public function getCallback()
     {
         $args = func_get_args();
@@ -95,6 +124,10 @@ class AjaxControllerTest extends WebTestCase
         return null;
     }
 
+    /**
+     * Creates Details object mock
+     * @return Details
+     */
     protected function getDetailsMock()
     {
         $mock = $this->createMock(Details::class);
@@ -105,6 +138,10 @@ class AjaxControllerTest extends WebTestCase
         return $mock;
     }
 
+    /**
+     * Creates Location object Mock
+     * @return Location
+     */
     protected function getLocationMock()
     {
         $mock = $this->createMock(Details::class);

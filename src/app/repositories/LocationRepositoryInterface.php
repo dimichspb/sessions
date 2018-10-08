@@ -3,6 +3,10 @@ namespace app\repositories;
 
 use app\models\Location;
 
+/**
+ * Interface LocationRepositoryInterface
+ * @package app\repositories
+ */
 interface LocationRepositoryInterface
 {
     /**

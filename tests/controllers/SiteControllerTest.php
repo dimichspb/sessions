@@ -3,8 +3,15 @@ namespace tests\controllers;
 
 use Silex\WebTestCase;
 
+/**
+ * Class siteControllerTest
+ * @package tests\controllers
+ */
 class siteControllerTest extends WebTestCase
 {
+    /**
+     * Tests homepage
+     */
     public function testGetHomepage()
     {
         $client = $this->createClient();
@@ -18,6 +25,10 @@ class siteControllerTest extends WebTestCase
 
     }
 
+    /**
+     * Creates Application in dev mode
+     * @return mixed|\Symfony\Component\HttpKernel\HttpKernelInterface
+     */
     public function createApplication()
     {
         $app = require __DIR__ . '/../../src/app.php';

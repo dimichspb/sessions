@@ -4,8 +4,15 @@ namespace tests\models;
 use app\models\Location;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class LocationTest
+ * @package tests\models
+ */
 class LocationTest extends TestCase
 {
+    /**
+     * Tests creation of Location
+     */
     public function testCreateSuccess()
     {
         $location = new Location();

@@ -7,14 +7,20 @@ use Pimple\ServiceProviderInterface;
 use Silex\Api\BootableProviderInterface;
 use Silex\Api\EventListenerProviderInterface;
 use Silex\Application;
-use Silex\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * Class ActiveRecordServiceProvider
+ * @package app\services
+ */
 class ActiveRecordServiceProvider implements ServiceProviderInterface, BootableProviderInterface, EventListenerProviderInterface
 {
+    /**
+     * Register ActiveRecord service. Configure its connection.
+     * @param Container $app
+     */
     public function register(Container $app)
     {
         $app['ar.init'] = $app->protect(function () use ($app) {
@@ -31,11 +37,20 @@ class ActiveRecordServiceProvider implements ServiceProviderInterface, BootableP
         });
     }
 
+    /**
+     * Bootstrap connection
+     * @param Application $app
+     */
     public function boot(Application $app)
     {
         $app['ar.init']();
     }
 
+    /**
+     * Event register
+     * @param Container $app
+     * @param EventDispatcherInterface $dispatcher
+     */
     public function subscribe(Container $app, EventDispatcherInterface $dispatcher)
     {
         $dispatcher->addListener(KernelEvents::REQUEST, function(GetResponseEvent $event) use ($app) {

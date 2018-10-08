@@ -1,9 +1,12 @@
 <?php
 namespace app\services;
 
-use app\models\Location;
 use app\repositories\LocationRepositoryInterface;
 
+/**
+ * Class LocationService
+ * @package app\services
+ */
 class LocationService
 {
     /**
@@ -20,6 +23,11 @@ class LocationService
         $this->repository = $repository;
     }
 
+    /**
+     * Get location by IP
+     * @param $ip
+     * @return \app\models\Location|null
+     */
     public function get($ip)
     {
         $location = $this->repository->get($ip);
@@ -27,6 +35,13 @@ class LocationService
         return $location;
     }
 
+    /**
+     * Create Location by details
+     * @param $ip
+     * @param $country
+     * @param $city
+     * @return \app\models\Location
+     */
     public function create($ip, $country, $city)
     {
         $location = $this->repository->create($ip, $country, $city);

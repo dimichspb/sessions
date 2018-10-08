@@ -6,8 +6,15 @@ use app\repositories\LocationRepositoryInterface;
 use app\services\LocationService;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class LocationServiceTest
+ * @package tests\services
+ */
 class LocationServiceTest extends TestCase
 {
+    /**
+     * Tests getting Location by IP success when repository returns Location
+     */
     public function testGetSuccess()
     {
         $location = $this->getLocationMock();
@@ -23,6 +30,9 @@ class LocationServiceTest extends TestCase
         $this->assertEquals($location->city, $found->city);
     }
 
+    /**
+     * Tests getting Location by IP fails when repository returns null
+     */
     public function testGetFailed()
     {
         $repository = $this->getRepositoryMock(null);
@@ -33,6 +43,9 @@ class LocationServiceTest extends TestCase
         $this->assertNull($found);
     }
 
+    /**
+     * Tests creation of Location success
+     */
     public function testCreateSuccess()
     {
         $location = $this->getLocationMock();
@@ -49,6 +62,7 @@ class LocationServiceTest extends TestCase
     }
 
     /**
+     * Creates LocationRepository Mock
      * @param $location
      * @return LocationRepositoryInterface
      */
@@ -63,6 +77,7 @@ class LocationServiceTest extends TestCase
     }
 
     /**
+     * Creates Location object Mock
      * @return Location
      */
     protected function getLocationMock()

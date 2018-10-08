@@ -5,8 +5,16 @@ use app\repositories\LocationRepositoryInterface;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
+/**
+ * Class LocationServiceProvider
+ * @package app\services
+ */
 class LocationServiceProvider implements ServiceProviderInterface
 {
+    /**
+     * Register LocationService
+     * @param Container $app
+     */
     public function register(Container $app)
     {
         $app['location'] = function($app) {

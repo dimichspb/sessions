@@ -3,8 +3,15 @@ namespace app\commands;
 
 abstract class Command extends \Symfony\Component\Console\Command\Command
 {
+    /**
+     * @var \mysqli
+     */
     protected $connection;
 
+    /**
+     * Command constructor.
+     * @param \mysqli $connection
+     */
     public function __construct(\mysqli $connection)
     {
         $this->connection = $connection;
@@ -14,6 +21,11 @@ abstract class Command extends \Symfony\Component\Console\Command\Command
         parent::__construct();
     }
 
+    /**
+     * Query the statement
+     * @param $statement
+     * @return bool|\mysqli_result
+     */
     public function query($statement)
     {
         if (!$result = $this->connection->query($statement)) {

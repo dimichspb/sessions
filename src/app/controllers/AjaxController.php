@@ -6,6 +6,10 @@ use ipinfo\ipinfo\IPinfo;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class AjaxController
+ * @package app\controllers
+ */
 class AjaxController
 {
     /**
@@ -18,17 +22,32 @@ class AjaxController
      */
     protected $locationService;
 
+    /**
+     * AjaxController constructor.
+     * @param IPinfo $ipService
+     * @param LocationService $locationService
+     */
     public function __construct(IPinfo $ipService, LocationService $locationService)
     {
         $this->ipService = $ipService;
         $this->locationService = $locationService;
     }
 
+    /**
+     * Returns IP of the user
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function actionIp(Request $request)
     {
         return new JsonResponse($this->ipService->getDetails());
     }
 
+    /**
+     * Returns details by IP
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function actionLocation(Request $request)
     {
         $location = $this->locationService->get($request->get('ip'));
